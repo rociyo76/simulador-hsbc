@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulador Hipotecario | Tu Casa 2025</title>
+  <meta name="description" content="Simula tu crédito hipotecario y recibe asesoría sin costo. Precalificación en minutos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#0A1F44;/* azul marino de marca */
+      --accent:#D4AF37;/* dorado */
+      --bg:#f6f8fb;
+      --text:#1c2240;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial; background:var(--bg); color:var(--text);}
+    header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e6e8ee}
+    .wrap{max-width:1100px;margin:auto;padding:18px 20px}
+    .row{display:flex;gap:20px;align-items:center;justify-content:space-between}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo img{height:44px;width:auto;object-fit:contain}
+    .brand{font-weight:800;letter-spacing:.2px;color:var(--brand)}
+    .cta{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:var(--brand);color:#fff;text-decoration:none;font-weight:600}
+    .cta svg{width:18px;height:18px}
+    .hero{background:linear-gradient(180deg,#ffffff, #eef2f8);border-bottom:1px solid #e6e8ee}
+    .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .hero h1{font-size:clamp(24px,3.5vw,38px);margin:6px 0;color:var(--brand)}
+    .hero p{color:#48506b;line-height:1.6}
+    .badge{display:inline-block;background:#fff;border:1px solid #e8e9f1;color:#3b4566;padding:6px 10px;border-radius:10px;font-size:12px}
+    .card{background:#fff;border:1px solid #e6e8ee;border-radius:16px;box-shadow:0 6px 16px rgba(10,31,68,.05)}
+    .panel{padding:18px}
+    label{font-size:13px;color:#3b4566;margin-bottom:6px;display:block}
+    input,select{width:100%;padding:12px 12px;border:1px solid #d7dbe7;border-radius:10px;font-size:15px}
+    input:focus,select:focus{outline:3px solid rgba(10,31,68,.1);border-color:var(--brand)}
+    .grid{display:grid;gap:14px}
+    .grid.two{grid-template-columns:1fr 1fr}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:12px;border-radius:12px;border:none;background:var(--brand);color:#fff;font-weight:700;cursor:pointer}
+    .btn.alt{background:#ffffff;color:var(--brand);border:1px solid #d7dbe7}
+    .muted{font-size:12px;color:#66708f}
+    .result{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .stat{background:#f5f8ff;border:1px dashed #d5dcf0;border-radius:12px;padding:10px 12px}
+    .stat b{display:block;color:var(--brand);font-size:18px;margin-top:6px}
+    .tabs{display:flex;background:#f3f5fa;border-radius:12px;padding:4px;gap:6px;margin:12px 0}
+    .tab{flex:1;text-align:center;padding:10px;border-radius:10px;font-weight:600;color:#49506a;cursor:pointer}
+    .tab.active{background:#fff;border:1px solid #e1e4ef;color:var(--brand)}
+    .iframe-wrap{border:1px dashed #cfd6ea;border-radius:12px;overflow:hidden}
+    iframe{width:100%;height:740px;border:0}
+    footer{padding:40px 20px;color:#66708f;text-align:center}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .chip{font-size:12px;border:1px solid #e2e6f2;border-radius:999px;padding:6px 10px;background:#fff}
+    @media (max-width:900px){
+      .hero .wrap{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap row">
+      <div class="logo">
+        <!-- Reemplaza src con tu logo PNG transparente -->
+        <img src="https://dummyimage.com/160x44/ffffff/0A1F44.png&text=TU+LOGO" alt="Logo" />
+        <div class="brand">Créditos Hipotecarios</div>
+      </div>
+      <a class="cta" href="https://wa.me/526863240420?text=Hola,%20quiero%20mi%20precalificaci%C3%B3n%20hipotecaria" target="_blank" rel="noopener">
+        <!-- WhatsApp icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.9 11.9 0 0 0 12.05 0C5.5.04.22 5.32.25 11.86c.01 2.1.56 4.15 1.6 5.96L0 24l6.35-1.86a12 12 0 0 0 5.7 1.45h.05c6.55-.03 11.83-5.31 11.85-11.86a11.9 11.9 0 0 0-3.43-8.25ZM12.1 21.5h-.05a9.9 9.9 0 0 1-5.05-1.42l-.36-.21-3.77 1.1 1.12-3.67-.24-.38a9.86 9.86 0 0 1-1.53-5.3C2.18 6.43 6.4 2.2 11.99 2.2h.05c5.59.03 9.82 4.29 9.8 9.88-.02 5.56-4.54 9.99-9.74 9.41Zm5.6-7.34c-.3-.16-1.78-.87-2.06-.97-.28-.1-.48-.16-.68.16-.2.32-.78.96-.96 1.16-.18.2-.36.22-.66.08-.3-.14-1.27-.46-2.42-1.47-.89-.77-1.49-1.72-1.67-2-.18-.28-.02-.44.13-.6.13-.13.3-.34.44-.5.15-.16.2-.28.3-.48.1-.2.06-.36-.02-.52-.08-.16-.68-1.64-.93-2.25-.25-.6-.5-.52-.68-.53h-.58c-.2 0-.52.08-.8.36-.28.28-1.06 1.04-1.06 2.52s1.09 2.92 1.24 3.12c.16.2 2.14 3.3 5.18 4.62.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.44.25-.7.25-1.31.18-1.44-.07-.13-.26-.2-.56-.36Z"/></svg>
+        686 324 0420
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="badge">Precalificación gratuita · Respuesta en minutos</span>
+        <h1>Simula tu crédito hipotecario y da el primer paso a tu casa propia</h1>
+        <p>
+          Compara y calcula tu mensualidad aproximada. Al finalizar, envía tus resultados por WhatsApp para recibir asesoría sin costo.
+        </p>
+        <div class="chips">
+          <span class="chip">Tasa fija</span>
+          <span class="chip">Plazos 15–25 años</span>
+          <span class="chip">Transparencia total</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="panel">
+          <div class="tabs" role="tablist">
+            <button class="tab active" id="tab-local" aria-selected="true">Simulador propio</button>
+            <button class="tab" id="tab-iframe" aria-selected="false">Simulador HSBC (iframe)</button>
+          </div>
+
+          <!-- Simulador Propio -->
+          <div id="local-sim" class="grid" style="margin-top:6px">
+            <div class="grid two">
+              <div>
+                <label for="valor">Valor de la vivienda (MXN)</label>
+                <input type="number" id="valor" placeholder="Ej. 1500000" min="0" inputmode="decimal">
+              </div>
+              <div>
+                <label for="enganche">Enganche (%)</label>
+                <input type="number" id="enganche" placeholder="20" min="0" max="90" step="0.1">
+              </div>
+            </div>
+            <div class="grid two">
+              <div>
+                <label for="plazo">Plazo (años)</label>
+                <select id="plazo">
+                  <option value="15">15</option>
+                  <option value="20" selected>20</option>
+                  <option value="25">25</option>
+                </select>
+              </div>
+              <div>
+                <label for="tasa">Tasa de interés anual (%)</label>
+                <input type="number" id="tasa" placeholder="10.0" min="0" step="0.01">
+              </div>
+            </div>
+            <button class="btn" id="btn-calcular">Calcular mensualidad</button>
+            <div class="result" id="resultado" aria-live="polite"></div>
+            <button class="btn alt" id="btn-wa" style="display:none">Enviar resultados por WhatsApp</button>
+            <p class="muted">* Cálculo referencial. No incluye gastos notariales ni variaciones por seguros o comisiones. Consulta el CAT informativo de cada institución.</p>
+          </div>
+
+          <!-- Iframe HSBC -->
+          <div id="iframe-sim" style="display:none">
+            <div class="grid">
+              <div>
+                <label for="hsbcUrl">Pega aquí la URL del simulador de HSBC</label>
+                <input type="url" id="hsbcUrl" placeholder="https://..." />
+              </div>
+              <button class="btn" id="btn-embed">Mostrar simulador HSBC</button>
+            </div>
+            <div class="iframe-wrap" id="iframeWrap" style="display:none;margin-top:12px">
+              <iframe id="hsbcFrame" title="Simulador HSBC"></iframe>
+            </div>
+            <p class="muted" style="margin-top:10px">Nota: La disponibilidad de inserción depende de las políticas del sitio de HSBC. Si no se muestra, usa el <a href="#" id="openExternal">enlace externo</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="margin-top:26px">
+    <div class="row" style="align-items:flex-start;gap:26px">
+      <div class="card" style="flex:1">
+        <div class="panel">
+          <h3 style="margin:0 0 8px;color:var(--brand)">¿Cómo funciona el cálculo?</h3>
+          <p style="margin:0">Usamos la fórmula de anualidad fija para hipotecas: pago mensual = <em>P·i / (1 - (1+i)^-n)</em>, donde <em>P</em> es el monto a financiar, <em>i</em> la tasa mensual y <em>n</em> el número de pagos.</p>
+        </div>
+      </div>
+      <div class="card" style="flex:1">
+        <div class="panel">
+          <h3 style="margin:0 0 8px;color:var(--brand)">Asesoría sin costo</h3>
+          <p style="margin:0">Te acompañamos desde la precalificación hasta la firma de escrituras. Comparativa entre múltiples bancos, sin compromiso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="y"></span> Créditos Hipotecarios · Atención por WhatsApp: <a href="https://wa.me/526863240420" target="_blank" rel="noopener">686 324 0420</a>
+  </footer>
+
+  <script>
+    const peso = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 2 });
+
+    const qs = id => document.getElementById(id);
+    const y = new Date().getFullYear();
+    qs('y').textContent = y;
+
+    // Tabs
+    const tabLocal = qs('tab-local');
+    const tabIframe = qs('tab-iframe');
+    const localSim = qs('local-sim');
+    const iframeSim = qs('iframe-sim');
+
+    tabLocal.addEventListener('click', ()=>{
+      tabLocal.classList.add('active');
+      tabIframe.classList.remove('active');
+      localSim.style.display='grid';
+      iframeSim.style.display='none';
+    });
+    tabIframe.addEventListener('click', ()=>{
+      tabIframe.classList.add('active');
+      tabLocal.classList.remove('active');
+      localSim.style.display='none';
+      iframeSim.style.display='block';
+    });
+
+    // Cálculo
+    qs('btn-calcular').addEventListener('click', ()=>{
+      const valor = parseFloat(qs('valor').value || '0');
+      const eng = parseFloat(qs('enganche').value || '0')/100;
+      const plazo = parseInt(qs('plazo').value || '0');
+      const tasa = parseFloat(qs('tasa').value || '0')/100;
+
+      if(!valor || valor<=0){alert('Ingresa el valor de la vivienda'); return}
+      if(eng<0 || eng>=0.95){alert('Ingresa un enganche entre 0% y 95%'); return}
+      if(!plazo){alert('Selecciona un plazo'); return}
+      if(!tasa || tasa<=0){alert('Ingresa una tasa anual válida'); return}
+
+      const P = valor * (1 - eng);
+      const n = plazo * 12;
+      const i = tasa / 12;
+      const mensual = (P * i) / (1 - Math.pow(1+i, -n));
+      const total = mensual * n;
+
+      const res = qs('resultado');
+      res.innerHTML = `
+        <div class="stat">
+          <span>Monto a financiar</span>
+          <b>${peso.format(P)}</b>
+        </div>
+        <div class="stat">
+          <span>Mensualidad estimada</span>
+          <b>${peso.format(mensual)}</b>
+        </div>
+        <div class="stat">
+          <span>Pagos totales</span>
+          <b>${n.toLocaleString('es-MX')} meses</b>
+        </div>
+        <div class="stat">
+          <span>Costo total (capital+intereses)</span>
+          <b>${peso.format(total)}</b>
+        </div>`;
+
+      // Preparar botón de envío a WhatsApp
+      const texto = encodeURIComponent(
+        `Hola, quiero asesoría para mi crédito hipotecario.\n\n`+
+        `Valor vivienda: ${peso.format(valor)}\n`+
+        `Enganche: ${(eng*100).toFixed(1)}%\n`+
+        `Plazo: ${plazo} años\n`+
+        `Tasa anual: ${(tasa*100).toFixed(2)}%\n`+
+        `Monto a financiar: ${peso.format(P)}\n`+
+        `Mensualidad estimada: ${peso.format(mensual)}\n`
+      );
+      const wa = qs('btn-wa');
+      wa.onclick = ()=> window.open(`https://wa.me/526863240420?text=${texto}`, '_blank');
+      wa.style.display='inline-flex';
+    });
+
+    // Iframe HSBC
+    const btnEmbed = qs('btn-embed');
+    const urlInput = qs('hsbcUrl');
+    const iwrap = qs('iframeWrap');
+    const iframe = qs('hsbcFrame');
+    const openExternal = qs('openExternal');
+
+    btnEmbed.addEventListener('click', ()=>{
+      const url = (urlInput.value||'').trim();
+      if(!url){alert('Pega la URL completa del simulador de HSBC');return}
+      try{ new URL(url); }catch(e){ alert('La URL no es válida'); return }
+      iframe.src = url;
+      iwrap.style.display='block';
+      openExternal.href = url;
+      openExternal.target = '_blank';
+      openExternal.rel = 'noopener';
+    });
+  </script>
+</body>
+</html>

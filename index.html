@@ -172,6 +172,7 @@
 
   <script>
     const peso = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 2 });
+    const tasa = 0.115; // 11.5% anual fijo
 
     const qs = id => document.getElementById(id);
     const y = new Date().getFullYear();
@@ -210,7 +211,7 @@
 
       const P = valor * (1 - eng);
       const n = plazo * 12;
-      const i = 11.5 / 12;
+      const i = tasa / 12;
       const mensual = (P * i) / (1 - Math.pow(1+i, -n));
       const total = mensual * n;
 

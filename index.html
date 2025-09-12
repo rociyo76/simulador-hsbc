@@ -202,8 +202,8 @@
       const valor = parseFloat(qs('valor').value || '0');
       const eng = parseFloat(qs('enganche').value || '0')/100;
       const plazo = parseInt(qs('plazo').value || '0');
-      const tasa = parseFloat(qs('tasa').value || '0')/100;
-
+     // const tasa = parseFloat(qs('tasa').value || '0')/100;
+       const tasa = 0.115;
       if(!valor || valor<=0){alert('Ingresa el valor de la vivienda'); return}
       if(eng<0 || eng>=0.95){alert('Ingresa un enganche entre 0% y 95%'); return}
       if(!plazo){alert('Selecciona un plazo'); return}

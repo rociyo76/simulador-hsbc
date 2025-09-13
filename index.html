@@ -123,8 +123,12 @@
   .extra-info { display: none; }
 }
     /* Ocultar en dispositivos móviles */
-
+    /* Oculta solo el bloque de texto de la hero en pantallas móviles */
+@media (max-width:900px){
+  .hero-text-mobile-hide { display:none !important; }
 }
+
+
 
 
   </style>
@@ -140,6 +144,7 @@
   <section class="hero">
     <div class="wrap">
       <div>
+        <div class="hero-text-mobile-hide">
         <span class="badge">Precalificación gratuita · Respuesta en minutos</span>
         <h1>Simula tu crédito hipotecario y da el primer paso a tu casa propia</h1>
 
@@ -151,6 +156,7 @@
           <span class="chip">Plazos 5–20 años</span>
           <span class="chip">Transparencia total</span>
         </div>
+          </div>
       </div>
 
       <div class="card">

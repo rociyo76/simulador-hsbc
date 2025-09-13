@@ -115,7 +115,14 @@
 
     /* Utilidad para ocultar en desktop / mostrar en móvil */
     .mobile-only{display:none}
-    @media (max-width:900px){ .mobile-only{display:block} }
+    @media (max-width:900px){ .mobile-only{display:block}
+                            }
+    /* Oculta la sección informativa en pantallas móviles */
+.extra-info { display: block; }
+@media (max-width: 900px){
+  .extra-info { display: none; }
+}
+
   </style>
 </head>
 <body>
@@ -191,8 +198,9 @@
       </div>
     </div>
   </section>
+<section class="wrap extra-info" style="margin-top:26px">
 
-  <section class="wrap" style="margin-top:26px">
+
     <div class="row" style="align-items:flex-start;gap:26px">
       <div class="card" style="flex:1">
         <div class="panel">
